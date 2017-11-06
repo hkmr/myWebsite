@@ -46,8 +46,10 @@ class PostController extends Controller
         $post->increment('likes');
 
         $user = User::where('id',$post->user_id)->first();
-
-        $user->notify(new PostLike( Auth::user(), $post ));
+        if(Auth::id() != $user->id)
+        {
+            $user->notify(new PostLike( Auth::user(), $post ));
+        }
 
         return back();
     }

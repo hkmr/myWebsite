@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', '| Category List')
+@section('title', 'Category List')
 
 @section('description', 'twebox all categories related to stories')
 

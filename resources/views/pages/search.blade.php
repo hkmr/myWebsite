@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', '')
+@section('title', 'Search Result')
 
 @section('description' , 'tweblog ,best blogging sites ')
 

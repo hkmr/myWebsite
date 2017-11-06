@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title' , " Blogs ")
+@section('title' , $category->name " Stories")
 
 @section('description',' blogs category')
 

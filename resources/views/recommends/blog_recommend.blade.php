@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title' , '| Recommends')
+@section('title' , 'Recommends Stories')
 
 @section('description', 'user recommends stories')
 

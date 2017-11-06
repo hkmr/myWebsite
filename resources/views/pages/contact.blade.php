@@ -1,7 +1,7 @@
 
 @extends('main')
 
-@section('title' , '| Contact')
+@section('title' , 'Contact')
 
 @section('description', 'contact tweBox')
 

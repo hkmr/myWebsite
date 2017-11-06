@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title' , '| Stories')
+@section('title' , 'All Stories')
 
 @section('description', 'best story , twebox stories')
 

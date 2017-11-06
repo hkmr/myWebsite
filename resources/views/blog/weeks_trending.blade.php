@@ -2,7 +2,7 @@
 
 @section('title' , '| Trending')
 
-@section('description', 'Weeks trending stories')
+@section('description', 'This Weeks trending stories')
 
 @section('content')
 

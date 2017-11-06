@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', '| Profile-edit')
+@section('title', $user->name.'\'s Profile')
 
 
 @section('content')

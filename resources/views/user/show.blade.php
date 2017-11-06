@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', $user->name.' profile')
+@section('title', $user->name.'\'s profile')
 
 
 @section('content')
@@ -18,7 +18,7 @@
                 </div>
 
                 <ul class="uk-breadcrumb uk-position-bottom-right uk-text-meta uk-margin-small-right" style="color:#ffffff; z-index: 100;">
-                    <li>{{ $posts->count() }} Stories</li>
+                    <li>{{ $posts->total() }} Stories</li>
                     <li>{{ $total_view }} Views</li>
                     <li>{{ $total_likes }} Likes</li>
                 </ul>
@@ -106,7 +106,7 @@
                   <div class="uk-card-header uk-padding-small">
                       <h1 class="uk-card-title uk-text-uppercase"><a class="uk-link-reset" href="{{ route('blog.single', $post->slug) }}" title="{{ $post->title }}">
                       {{ substr(strip_tags($post->title), 0 ,20) }} {{ strlen( strip_tags($post->title )) >30 ? '...' : '' }}</a> </h1>
-                      <span class="uk-badge uk-text-center uk-align-right"><a class="uk-link-reset" href="{{'/categories/'.$post->category->id }}">{{$post->category->name}}</a></span>
+                      <span class="uk-badge uk-text-center uk-align-right"><a class="uk-link-reset" href="{{'/categories/'.$post->category->name }}">{{$post->category->name}}</a></span>
                       <div class="uk-grid-small uk-flex-middle" uk-grid>
                           <div class="">
                               <img class="uk-border-circle uk-icon uk-icon-image" width="30" height="30" 

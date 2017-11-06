@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title' , '| Terms')
+@section('title' , 'Terms and Conditions')
 
 @section('description' , '| twebox terms and conditions for users')
 

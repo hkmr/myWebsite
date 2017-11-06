@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', '| Login')
+@section('title', 'Login to Your Account')
 
 @section('content')
 

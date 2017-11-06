@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title' , " Blogs ")
+@section('title' , "Categories Followed")
 
 @section('description',' blogs category')
 

@@ -2,7 +2,7 @@
 
 @section('title', '| Edit Post')
 
-@section('description', 'edit your twebox posts')
+@section('description', 'Edit Story')
 
 @section('content')
 

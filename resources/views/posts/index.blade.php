@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title','| All Posts')
+@section('title','All Stories')
 
 
 @section('content')
@@ -23,8 +23,10 @@
                     </a>
                     </h3>
                     <div class="uk-child-width-1-2" uk-margin>
-                        <div><span>lorem</span></div>
-                        <div class="uk-align-right"><span class="uk-badge">{{ $post->category->name }}</span></div>
+                        <div><span>{{$post->created_at->diffForHumans()}}</span></div>
+                        <div class="uk-align-right">
+                            <span class="uk-badge uk-text-center uk-align-right"><a class="uk-link-reset" href="{{'/categories/'.$post->category->name }}">{{$post->category->name}}</a></span>
+                        </div>
                     </div>
                 </div>
                 <p>{{ substr(strip_tags($post->body),0,250)}} {{ strlen(strip_tags($post->body)) >250 ? "..." : "" }} <a class="uk-link-reset" href="{{ route('posts.show',$post->id) }}"> read more.</a></p>

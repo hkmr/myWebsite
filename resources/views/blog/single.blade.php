@@ -1,7 +1,7 @@
 @extends('main')
 
 <?php $titleTag = htmlspecialchars($post->title); ?>
-@section('title', '| '.$titleTag )
+@section('title', $post->title )
 
 @section('og-url', route('blog.single', $post->slug) )
 

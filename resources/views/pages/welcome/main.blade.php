@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title' , ' - Read and write yout favorite stories ')
+@section('title' , 'Read and write yout favorite stories ')
 
 @section('description' , '"Welcome to twebox, a place to read, write, and interact with the stories that matter most to you. Every day, thousands of read, write, and share important stories on twebox.')
 

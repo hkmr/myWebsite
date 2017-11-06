@@ -34,9 +34,10 @@ class ProfileController extends Controller
         $user = User::where('username',$id)->first();
 
 		$posts =Post::where([['user_id',$user->id],['status',1]])->orderBy('views','desc')->paginate(10);
+        $allPosts = Post::where([['user_id',$user->id],['status',1]])->get();
         $total_view = 0;
         $total_likes = 0;
-        foreach ($posts as $post) {
+        foreach ($allPosts as $post) {
             $total_view+=$post->views;
             $total_likes+=$post->likes;
         }

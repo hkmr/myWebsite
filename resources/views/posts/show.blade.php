@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title' , '| '. $post->title)
+@section('title' ,$post->title)
 
 @section('description', $post->title)
 
