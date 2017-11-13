@@ -26,7 +26,6 @@
       @include('partials._javascript')
 
       @include('partials._messages')
-
     
 
   </body>

@@ -1,22 +1,21 @@
 @extends('main')
 
-@section('title', '| Edit Post')
+@section('title', 'Edit - '.$post->title)
 
 @section('description', 'Edit Story')
 
 @section('content')
 
-    <div class="uk-padding-large uk-margin-large-top">
+    <div class="uk-padding-small">
     	
     	<div uk-grid>
     		<div class="uk-width-1-6@m"></div>
 
     		<div class="uk-width-3-5">
-    			
-    			<h1 class="uk-heading-primary">Edit Story</h1>
+    		
 
-    			Created at : {{ date('j M, Y',strtotime($post->created_at) ) }}
-    			Updated at : {{ date('j M, Y',strtotime($post->updated_at) ) }}
+    			Created at : {{ date('j M, Y',strtotime($post->created_at) ) }} | 
+    			Last Updated at : {{ date('j M, Y',strtotime($post->updated_at) ) }}
 
     			{!! Form::model($post , ['route' => ['posts.update', $post->id] ,'method' => 'PUT' ,'files' => true ]) !!}
 
@@ -40,8 +39,8 @@
 					</div>
 				</div>
 
-				<div class="uk-margin uk-margin-xlarge-top">
-					{{ Form::textarea('body', null, ['class'=> 'uk-textarea', 'required' =>'required', 'id' => 'post-body'] ) }}
+				<div class="uk-margin">
+					{{ Form::textarea('body', null, ['class'=> 'uk-textarea', 'required' =>'required', 'id' => 'post-body', 'rows' => '30'] ) }}
 				</div>
 
 				<div class="uk-margin">
@@ -67,14 +66,14 @@
     var editor_config = {
         path_absolute : "{{ URL::to('/') }}/",
         selector: "textarea",
-        menubar: view,
+        menubar: false,
         plugins: [
             "advlist autolink lists link image charmap print preview hr anchor pagebreak",
             "searchreplace wordcount visualblocks visualchars code fullscreen",
             "insertdatetime media nonbreaking save table contextmenu directionality",
             "emoticons template paste textcolor colorpicker textpattern textcolor"
         ],
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image | fontselect | forecolor | fontsizeselect | fullscreen",
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image | fontselect | forecolor | fontsizeselect",
         content_css: [
 '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
 '//www.tinymce.com/css/codepen.min.css'],

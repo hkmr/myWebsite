@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="uk-padding-large uk-container">
+<div class="uk-padding-small uk-container">
 
 <div class="uk-child-width-1-3@m uk-grid-large uk-grid-match uk-text-center uk-padding-small" uk-grid>
     

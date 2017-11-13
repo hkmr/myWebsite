@@ -1,27 +1,23 @@
 @extends('main')
 
-@section('title','Create New Stories')
+@section('title','Write New Stories')
 
 @section('description', 'create new post in tweBox')
 
 @section('stylesheets')
-
-	<!-- include libraries(jQuery, bootstrap) -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 
 @endsection
 
 @section('content')
 	
 
- 	<div class="uk-padding-large uk-margin-large-top">
+ 	<div class="uk-padding-small">
  		
  		<div uk-grid>
  			<div class="uk-width-1-6@m"></div>
  			<div class="uk-width-3-5@m">
  				<h1 class="uk-heading-divider">Write Story</h1>
- 				{!! Form::open(array('route' => 'posts.store' , 'data-parsley-validate' => '', 'files' => true)) !!}
+ 				{!! Form::open(['route' => 'posts.store' , 'data-parsley-validate' => '', 'files' => true, 'method' => 'POST','novalidate']) !!}
 
 			        <fieldset class="uk-fieldset">
 			        	
@@ -33,7 +29,7 @@
 
 	 					<div class="uk-margin">
 
-					        {{ Form::text('title', null, ['class' => 'uk-input uk-form-width-1-1', 'required' =>'', 'maxlength' =>'255', 'placeholder' => 'Title Of Story']) }}
+					        {{ Form::text('title', null, ['class' => 'uk-input uk-form-width-1-1', 'required' =>'required', 'maxlength' =>'255', 'placeholder' => 'Title Of Story']) }}
 					    </div>
 
 					    <div class="uk-margin">
@@ -63,7 +59,7 @@
 
 					     <div class="uk-margin">
 
-					     	{{ Form::textarea('body', null, ['class'=> 'uk-textarea', 'id'=>'post-body']) }}
+					     	{{ Form::textarea('body', null, ['class'=> 'uk-textarea', 'required' =>'required', 'rows' => '30']) }}
 
 				        </div>
 
@@ -93,9 +89,9 @@
             "advlist autolink lists link image charmap print preview hr anchor pagebreak",
             "searchreplace wordcount visualblocks visualchars code fullscreen",
             "insertdatetime media nonbreaking save table contextmenu directionality",
-            "emoticons template paste textcolor colorpicker textpattern textcolor"
+            "emoticons template paste textcolor colorpicker textpattern textcolor pagebreak"
         ],
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image | fontselect | forecolor | fontsizeselect",
+        toolbar: "styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image | fontselect | fullscreen | pagebreak",
         content_css: [
 '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
 '//www.tinymce.com/css/codepen.min.css'],

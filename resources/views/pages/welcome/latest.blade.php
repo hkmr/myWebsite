@@ -9,7 +9,7 @@
         <div>
          <div class="uk-card uk-card-default">
           <div class="uk-card-header uk-padding-small">
-              <h1 class="uk-card-title uk-text-uppercase"><a class="uk-link-reset" href="{{ route('blog.single', $post->slug) }}" title="{{ $post->title }}" uk-tooltip> {{ substr(strip_tags($post->title), 0 ,20) }} {{ strlen( strip_tags($post->title )) >30 ? '...' : '' }} </a> </h1>
+              <h1 class="uk-card-title uk-text-uppercase"><a class="uk-link-reset" href="{{ route('blog.single', $post->slug) }}" title="{{ $post->title }}"> {{ substr(strip_tags($post->title), 0 ,20) }} {{ strlen( strip_tags($post->title )) >30 ? '...' : '' }} </a> </h1>
               <span class="uk-badge uk-text-center uk-align-right"><a class="uk-link-reset" href="{{'/categories/'.$post->category->name }}">{{ $post->category->name }}</a></span>
               <div class="uk-grid-small uk-flex-middle" uk-grid>
                   <div class="">
@@ -37,7 +37,7 @@
               @else
               <div class="uk-child-width-auto" >
                   <a class="uk-link-reset" href="{{ route('login') }}" >
-                      <span uk-icon="icon: heart" title="Like" uk-tooltip></span>
+                      <span uk-icon="icon: heart" title="Like"></span>
                       <span class="uk-text-meta uk-text-small"> {{$post->likes}} </span>
                   </a>
               </div>
@@ -45,18 +45,18 @@
               
               <div class="uk-child-width-auto">
                 <a href="{{ route('blog.single', $post->slug.'#comments') }}">
-                    <span uk-icon="icon: comments" title="Comment" uk-tooltip></span>
+                    <span uk-icon="icon: comments" title="Comment"></span>
                   <span class="uk-text-meta uk-text-small"> {{ $post->comments()->count() }}</span> 
                 </a>
               </div>
               <div class="uk-child-width-auto">
-                <a uk-icon="icon: social" title="Share" uk-tooltip></a>
+                <a uk-icon="icon: social" title="Share"></a>
                 <div uk-dropdown="mode: click">
                     <ul class="uk-iconnav uk-padding-remove">
-                        <li><a href="http://www.facebook.com/share.php?u={{route('blog.single', $post->slug)}}&title={{$post->slug}}" target="_blank" uk-icon="icon: facebook" title="Facebook" uk-tooltip></a></li>
-                        <li><a href="http://twitter.com/home?status={{$post->slug}}+{{route('blog.single', $post->slug)}}" target="_blank" uk-icon="icon: twitter" title="Twiiter" uk-tooltip></a></li>
-                        <li><a href="https://plus.google.com/share?url={{route('blog.single', $post->slug)}}" target="_blank" uk-icon="icon: google-plus" title="Google Plus" uk-tooltip></a></li>
-                        <li><a href="#" target="_blank" uk-icon="icon: instagram" title="Instagram" uk-tooltip></a></li>
+                        <li><a href="http://www.facebook.com/share.php?u={{route('blog.single', $post->slug)}}&title={{$post->slug}}" target="_blank" uk-icon="icon: facebook" title="Facebook"></a></li>
+                        <li><a href="http://twitter.com/home?status={{$post->slug}}+{{route('blog.single', $post->slug)}}" target="_blank" uk-icon="icon: twitter" title="Twiiter"></a></li>
+                        <li><a href="https://plus.google.com/share?url={{route('blog.single', $post->slug)}}" target="_blank" uk-icon="icon: google-plus" title="Google Plus"></a></li>
+                        <li><a href="#" target="_blank" uk-icon="icon: instagram" title="Instagram"></a></li>
                     </ul>
                 </div>
                </div>

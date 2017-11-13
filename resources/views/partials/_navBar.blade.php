@@ -39,15 +39,15 @@
                       <ul class="uk-nav uk-dropdown-nav">
                           <li class="uk-nav-header">{{ Auth::user()->name }}</li>
                           <li class="uk-nav-divider"></li>
-                          <li class=""><a href="{{ route('profile.show', ['id' => Auth::user()->username]) }}" title="Your Profile"><span uk-icon="icon:user"></span> Profile</a></li>
-                          <li><a href="{{ route('posts.create') }}" title="Write New Story"><span uk-icon="icon:pencil;"></span> Write Story</a></li>
-                          <li><a href="{{ route('posts.index') }}" title="Stories written by you"><span uk-icon="icon:list"></span> My Stories</a></li>
-                          <li><a href="{{ url('my_bookmarked') }}" title="All Bookmarked Stories"><span uk-icon="icon:bookmark"></span> Bookmarks</a></li>
-                          <li><a href="{{ url('my_favorites') }}" title="Stories You likes"><span uk-icon="icon:heart"></span> Likes</a></li>
-                          <li><a href="{{ url('followed') }}" title="Categories Followed"><span uk-icon="icon:thumbnails"></span> Interest</a></li>
-                          <li><a href="{{url('setting')}}" title="User Setting"><span uk-icon="icon:settings"></span> Setting</a></li>
+                          <li class="uk-margin-small"><a href="{{ route('profile.show', ['id' => Auth::user()->username]) }}" title="Your Profile"><span uk-icon="icon:user"></span> Profile</a></li>
+                          <li class="uk-margin-small"><a href="{{ route('posts.create') }}" title="Write New Story"><span uk-icon="icon:pencil;"></span> Write Story</a></li>
+                          <li class="uk-margin-small"><a href="{{ route('posts.index') }}" title="Stories written by you"><span uk-icon="icon:list"></span> My Stories</a></li>
+                          <li class="uk-margin-small"><a href="{{ url('my_bookmarked') }}" title="All Bookmarked Stories"><span uk-icon="icon:bookmark"></span> Bookmarks</a></li>
+                          <li class="uk-margin-small"><a href="{{ url('my_favorites') }}" title="Stories You likes"><span uk-icon="icon:heart"></span> Likes</a></li>
+                          <li class="uk-margin-small"><a href="{{ url('followed') }}" title="Categories Followed"><span uk-icon="icon:thumbnails"></span> Interest</a></li>
+                          <li class="uk-margin-small"><a href="{{url('setting')}}" title="User Setting"><span uk-icon="icon:settings"></span> Setting</a></li>
                           <li class="uk-nav-divider"></li>
-                          <li><a href="{{route('logout')}}"><span uk-icon="icon:sign-out"></span> Logout</a></li>
+                          <li class="uk-margin-small"><a href="{{route('logout')}}"><span uk-icon="icon:sign-out"></span> Logout</a></li>
                       </ul>
                   </div>
               </li>

@@ -72,3 +72,5 @@ $('#type-it').typeIt({
   breakLines:false,
   loop:true,
 });
+
+</script>

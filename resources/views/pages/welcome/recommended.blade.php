@@ -4,7 +4,7 @@
 <div class="uk-child-width-1-5@m uk-grid-small uk-grid-match" uk-grid>
   @forelse($recomends as $recomend)
     <div>
-        <div class="uk-card uk-card-primary uk-card-body">
+        <div class="uk-card uk-card-secondary uk-card-body">
             <h3 class="uk-card-title"><a class="uk-link-reset" href="{{ route('blog.single', $recomend->slug) }}">{{ substr(strip_tags($recomend->title), 0 ,15) }} {{ strlen( strip_tags($recomend->title )) >15 ? '...' : '' }}</a></h3>
             <p>{{ substr(strip_tags($recomend->body), 0 ,100) }} {{ strlen(strip_tags($recomend->body)) >250 ? '...' : '' }} <a href="{{ route('blog.single', $recomend->slug) }}" class="uk-link-reset">Read More</a></p>
             <div class="uk-child-width-1-4" uk-grid>

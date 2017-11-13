@@ -7,13 +7,13 @@
 @section('content')
 
 
-  <div class="uk-cover-container uk-margin-large-top">
+  <div class="uk-cover-container">
       @if($post->image != null )
         <canvas width="400" height="200"></canvas>
-        <img uk-cover src="/images/blog/{{$post->image}}" alt="" >
+        <img uk-cover src="/images/blog/{{$post->image}}" alt="{{$post->title}}" >
       @endif
   </div>
-    <div class="uk-padding-large">
+    <div class="uk-padding-small">
         <div uk-grid>
             <div class="uk-width-1-6@m"></div>
             <div class="uk-width-3-5@m">
@@ -22,17 +22,24 @@
                 <div class="uk-flex uk-flex-center">
                     <div uk-grid>
                           <div>
-                            <a href="/posts/{{$post->id}}/edit" class="uk-icon-button" uk-icon="icon: file-edit" title="Edit this Story" ></a>
+                            <a href="/posts/{{$post->id}}/edit" class="uk-link-reset" title="Edit this Story" >
+                              <span class="uk-icon-button" uk-icon="icon: file-edit"></span>
+                              <span>Edit</span>
+                            </a>
                           </div>
                           <div>
                               {!! Form::open([ 'route' =>['posts.destroy',$post->id] , 'method' => 'DELETE' ]) !!}
 
-                              <button type="submit" class="uk-icon-button" uk-icon="icon:trash" onclick="return confirm('Delete This story ?')" id="delete" title="Delete Story" ></button>
+                              <button type="submit" class="uk-icon-button" uk-icon="icon:trash" onclick="return confirm('Are You Wanted To Delete This Story ?')" id="delete" title="Delete Story" ></button>
+                              <span>Delete</span>
 
                               {!! Form::close() !!}
                           </div>
                           <div>
-                              <a href="/posts" uk-icon="icon:list" class="uk-icon-button" title="All Stories"></a>
+                              <a href="/posts" class="uk-link-reset" title="All Stories">
+                                <span uk-icon="icon:list" class="uk-icon-button"></span>
+                                <span>Stories</span>
+                              </a>
                           </div>
                     </div>
                 </div>
@@ -77,7 +84,7 @@
 
                     {{ Form::open(['route' => ['comments.store', $post->id ], 'method' => 'POST', 'class'=>'ui reply form']) }}
                     <div class="field">
-                      {{ Form::textarea('comment',null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => 'Enter Your comment here..']) }}
+                      {{ Form::textarea('comment',null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => 'Write Your comment here..']) }}
                     </div>
                     {{ Form::submit('Comment', ['class' => 'uk-button uk-button-primary']) }}
                     {{ Form::close() }}
@@ -108,10 +115,18 @@
 
                     <div class="comment">
                     <a class="avatar">
-                      <img src="{{$comment->user->avatar}}">
+                      @if($comment->user_id == null)
+                      <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y&d=mm">
+                      @else
+                      <img src="{{ strpos($comment->user->avatar, "http",0) ===0 ? $comment->user->avatar : '/images/user-profile/'.$comment->user->avatar   }}">
+                      @endif
                     </a>
                     <div class="content">
-                      <a href="/profile/{{$comment->user->id}}" class="author">{{ $comment->user->name }}</a>
+                      @if($comment->user_id == null)
+                        <a class="author">{{ $comment->name }}</a>
+                      @else
+                      <a href="/profile/{{$comment->user->username}}" class="author">{{ $comment->user->name }}</a>
+                      @endif
                       <div class="metadata">
                         <span class="date">{{$comment->created_at->diffForHumans()}}</span>
                       </div>
@@ -131,23 +146,32 @@
             @if( !$agent->isMobile() && !$agent->isTablet() )
             <div class="uk-margin">
                 <ul class="uk-iconnav uk-iconnav-vertical ">
-                    <li><a href="/posts/{{$post->id}}/edit" class="uk-icon-button" uk-icon="icon: file-edit" title="Edit this Story" ></a></li>
+                    <li>
+                      <a href="/posts/{{$post->id}}/edit" title="Edit this Story" >
+                        <span class="uk-icon-button" uk-icon="icon: file-edit"></span>
+                        <span>Edit</span>
+                      </a>
+                    </li>
                     <li>
                       {!! Form::open([ 'route' =>['posts.destroy',$post->id] , 'method' => 'DELETE' ]) !!}
 
                       <button type="submit" class="uk-icon-button" uk-icon="icon:trash" onclick="return confirm('Delete This story ?')" id="delete" title="Delete Story" ></button>
-
+                      <span>Delete</span>
                       {!! Form::close() !!}
 
                     </li>
-                    <li><a href="/posts" uk-icon="icon:list" class="uk-icon-button" title="All Stories"></a></li>
+                    <li>
+                      <a href="/posts" title="All Stories">
+                        <span uk-icon="icon:list" class="uk-icon-button"></span>
+                        <span>Stories</span>
+                      </a></li>
                 </ul>
             </div>
             @endif
         </div>
 
         {{-- recommends section --}}
-        <hr class="uk-divider-icon">
+        {{-- <hr class="uk-divider-icon">
             <h1 class="uk-heading-divider uk-padding-remove-bottom">More Like This ...<span class="uk-text-small uk-align-right "><a href="#"> Show more...</a></span></h1>
             <div class="uk-child-width-1-5@m uk-grid-small uk-grid-match" uk-grid>
                 <div>
@@ -161,56 +185,9 @@
                             <div><a href="" uk-icon="icon: bookmark" title="Bookmark" uk-tooltip></a></div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <div class="uk-card uk-card-primary uk-card-body">
-                        <h3 class="uk-card-title">Title</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <div class="uk-child-width-1-4" uk-grid>
-                            <div><a href="" uk-icon="icon: heart" title="Like" uk-tooltip></a></div>
-                            <div><a href="" uk-icon="icon: comments" title="Comment" uk-tooltip></a></div>
-                            <div><a href="" uk-icon="icon: social" title="Share" uk-tooltip></a></div>
-                            <div><a href="" uk-icon="icon: bookmark" title="Bookmark" uk-tooltip></a></div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="uk-card uk-card-primary uk-card-body">
-                        <h3 class="uk-card-title">Title</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <div class="uk-child-width-1-4" uk-grid>
-                            <div><a href="" uk-icon="icon: heart" title="Like" uk-tooltip></a></div>
-                            <div><a href="" uk-icon="icon: comments" title="Comment" uk-tooltip></a></div>
-                            <div><a href="" uk-icon="icon: social" title="Share" uk-tooltip></a></div>
-                            <div><a href="" uk-icon="icon: bookmark" title="Bookmark" uk-tooltip></a></div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="uk-card uk-card-primary uk-card-body">
-                        <h3 class="uk-card-title">Title</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <div class="uk-child-width-1-4" uk-grid>
-                            <div><a href="" uk-icon="icon: heart" title="Like" uk-tooltip></a></div>
-                            <div><a href="" uk-icon="icon: comments" title="Comment" uk-tooltip></a></div>
-                            <div><a href="" uk-icon="icon: social" title="Share" uk-tooltip></a></div>
-                            <div><a href="" uk-icon="icon: bookmark" title="Bookmark" uk-tooltip></a></div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="uk-card uk-card-primary uk-card-body">
-                        <h3 class="uk-card-title">Title</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <div class="uk-child-width-1-4" uk-grid>
-                            <div><a href="" uk-icon="icon: heart" title="Like" uk-tooltip></a></div>
-                            <div><a href="" uk-icon="icon: comments" title="Comment" uk-tooltip></a></div>
-                            <div><a href="" uk-icon="icon: social" title="Share" uk-tooltip></a></div>
-                            <div><a href="" uk-icon="icon: bookmark" title="Bookmark" uk-tooltip></a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </div>               
+                
+            </div> --}}
     </div>
 
 @endsection

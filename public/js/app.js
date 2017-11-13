@@ -43731,7 +43731,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "uk-badge"
   }, [_vm._v(_vm._s(_vm.notificationCount))]) : _vm._e()]), _vm._v(" "), _c('div', {
     attrs: {
-      "uk-dropdown": "mode: click; pos: bottom-right;"
+      "uk-dropdown": "mode: click; pos: bottom-center;"
     }
   }, [_c('div', {
     staticClass: "uk-width-medium "

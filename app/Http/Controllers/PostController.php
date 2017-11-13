@@ -34,7 +34,7 @@ class PostController extends Controller
         $user = User::all();
 
         //returning a view and passing it to the variable
-        return view('posts.index')->withPosts($posts)->withPopulars($populars)->withCategories($categories)->withUser($user);
+        return view('posts.index',compact('posts','populars','categories'));
     }
 
 
@@ -46,7 +46,7 @@ class PostController extends Controller
         $post->increment('likes');
 
         $user = User::where('id',$post->user_id)->first();
-        if(Auth::id() != $user->id)
+        if(Auth::id() != $post->user_id)
         {
             $user->notify(new PostLike( Auth::user(), $post ));
         }
@@ -71,7 +71,10 @@ class PostController extends Controller
 
         $user = User::where('id',$post->user_id)->first();
 
-        $user->notify(new PostBookmark( Auth::user(), $post ));
+        if(Auth::id() != $post->user_id)
+        {
+            $user->notify(new PostBookmark( Auth::user(), $post ));
+        }
 
         return back();
     }
@@ -98,8 +101,7 @@ class PostController extends Controller
 
         $this -> validate($request, array(
                 'status'        =>  'required',
-                'title'         =>  'required|max:255|unique:posts,title',
-                // 'slug'          =>  'required|alpha_dash|min:5|max:255|unique:posts,slug',
+                'title'         =>  'required|max:255',
                 'category_id'   =>  'required|integer',
                 'body'          =>  'required',
                 'featured_image'=>  'sometimes|image|max:1012'
@@ -108,8 +110,16 @@ class PostController extends Controller
         //Storing the data to the database
 
         $post = new Post;
-        $replace =array(" ","?","/","[","]","<",">","{","}","|","^","`",";",":","@","&","=","+","$",",","'",".");
+        $replace =array(" ","?","/","[","]","<",">","{","}","|","^","`",";",":","@","&","=","+","$",",","'",".","\"");
         $slug = str_ireplace($replace , "-", $request->title);
+
+        // Checking for same title is available or not
+        $availSlug = Post::where('slug',$slug)->get();
+        if($availSlug != null)
+            {   
+                $count = $availSlug->count();
+                $slug = $slug ."-". $count;
+            }
 
         $post ->status          =$request->status;
         $post -> title          =$request->title;
@@ -150,7 +160,7 @@ class PostController extends Controller
     public function show($id)
     {   
         $post = Post::find($id);
-        $comments = Comment::where('post_id' , $post->id)->get();
+        $comments = Comment::where('post_id' , $post->id)->orderBy('created_at', 'desc')->get();
         $agent = new Agent();
 
         if ($post->user_id == Auth::user()->id) {
@@ -208,6 +218,15 @@ class PostController extends Controller
 
         $replace =array(" ","?","/","[","]","<",">","{","}","|","^","`",";",":","@","&","=","+","$",",","'",".");
         $slug = str_ireplace($replace , "-", $request->title);
+
+        // Checking for same title is available or not
+        $availSlug = Post::where('slug',$slug)->get();
+        if($availSlug != null)
+            {   
+                $count = $availSlug->count();
+                $slug = $slug ."-". $count;
+            }
+
         //saving the data to the database
 
         $post->status = $request->status;

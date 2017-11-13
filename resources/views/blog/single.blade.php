@@ -17,7 +17,7 @@
 @section('content')
     
     @if ($post->image != null)
-      <div class="uk-cover-container uk-margin-large-top">
+      <div class="uk-cover-container">
           <canvas width="400" height="200"></canvas>
           <img uk-cover src="{{'/images/blog/'.$post->image}}" >
       </div>

@@ -4,7 +4,7 @@
           <a title="Notifications" @click="markAsRead"><span uk-icon="icon:bell;ratio:1.3"></span>
             <span class="uk-badge" v-if="notificationCount > 0">{{notificationCount}}</span>
           </a>
-          <div uk-dropdown="mode: click; pos: bottom-right;">
+          <div uk-dropdown="mode: click; pos: bottom-center;">
               <div class="uk-width-medium ">
                       <ul class="uk-nav uk-dropdown-nav">
 

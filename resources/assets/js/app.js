@@ -12,7 +12,6 @@ Vue.component('favorite', require('./components/Favorite.vue'));
 Vue.component('bookmark', require('./components/Bookmark.vue'));
 Vue.component('follow', require('./components/Follow.vue'));
 Vue.component('notification', require('./components/Notification.vue'));
-// Vue.component('like-notification', require('./components/LikeNotification.vue'));
 
 const app = new Vue({
     el: '#app',

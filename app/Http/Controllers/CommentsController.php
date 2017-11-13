@@ -54,7 +54,8 @@ class CommentsController extends Controller
             // sending notification
             $user = User::where('id',$post->user_id)->first();
 
-            $user->notify(new PostComment( Auth::user(), $post, $request->comment ));
+            if(Auth::id() != $post->user_id)
+                $user->notify(new PostComment( Auth::user(), $post, $request->comment ));
 
         }
         // if Guest user
@@ -85,7 +86,7 @@ class CommentsController extends Controller
         // displaying success message
         Session('success', 'Comment posted successfully!');
 
-        return redirect()->route('blog.single', [$post->slug]);
+        return redirect()->back();
     }
 
     public function show($id)

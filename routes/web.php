@@ -78,3 +78,7 @@ Route::get('/markAsRead', function(){
 
 	auth()->user()->notifications->markAsRead();
 });
+
+Route::get('/try', function(){
+	return view('try');
+});

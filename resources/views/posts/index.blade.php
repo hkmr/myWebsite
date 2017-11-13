@@ -55,9 +55,29 @@
                             <a class="uk-link-reset" uk-icon="icon: chevron-down"> More</a>
                             <div uk-dropdown="mode: click">
                                 <ul class="uk-iconnav uk-padding-remove">
-                                    <li><a href="" uk-icon="icon: trash" title="Delete this Story"></a></li>
-                                    <li><a href="" uk-icon="icon: pencil" title="Edit this Story"></a></li>
-                                    <li><a href="" uk-icon="icon: lock" title="Make private"></a></li>
+                                    <li>
+                                        {!! Form::open([ 'route' =>['posts.destroy',$post->id] , 'method' => 'DELETE' ]) !!}
+
+                                          <button type="submit" class="uk-icon-button" uk-icon="icon:trash" onclick="return confirm('Delete This story ?')" id="delete" title="Delete Story" onclick="confirm('Are Your Sure to DELETE This story')" ></button>
+
+                                          {!! Form::close() !!}
+                                    </li>
+                                    <li>
+                                        <a href="/posts/{{$post->id}}/edit" class="uk-link-reset" title="Edit this Story" >
+                                          <span class="uk-icon-button" uk-icon="icon: file-edit"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        @if($post->status == 1)
+                                        <a href="#" title="Make private">
+                                            <span uk-icon="icon:lock" class="uk-icon-button"></span>
+                                        </a>
+                                        @else
+                                        <a href="#" title="Make Public">
+                                            <span uk-icon="icon:unlock" class="uk-icon-button"></span>
+                                        </a>
+                                        @endif
+                                    </li>
                                 </ul>
                             </div>
                         </div>
